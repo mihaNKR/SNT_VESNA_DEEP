@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Личный кабинет садовода - система управления садовым участком">
+    
+    <title>Личный кабинет садовода</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    
+    <!-- Preconnect to external resources -->
+    <link rel="preconnect" href="https://api.gardener-portal.example.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#4CAF50">
+    
+    <!-- iOS meta tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Кабинет садовода">
+    
+    <!-- Microsoft meta tags -->
+    <meta name="msapplication-TileColor" content="#4CAF50">
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="/static/css/main.css" as="style">
+    <link rel="preload" href="/static/js/main.js" as="script">
+    
+    <!-- No-JS fallback -->
+    <noscript>
+        <style>
+            .no-js-message {
+                display: block;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                padding: 1rem;
+                background: #f44336;
+                color: white;
+                text-align: center;
+                z-index: 9999;
+            }
+        </style>
+        <div class="no-js-message">
+            Для работы приложения требуется включенный JavaScript. Пожалуйста, активируйте JavaScript в настройках браузера.
+        </div>
+    </noscript>
+</head>
+<body>
+    <!-- Root container for React -->
+    <div id="root"></div>
+    
+    <!-- Loading indicator (shown until React mounts) -->
+    <div id="loading-overlay">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p>Загрузка личного кабинета...</p>
+        </div>
+    </div>
+    
+    <!-- Service worker registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registration successful');
+                    })
+                    .catch(err => {
+                        console.log('ServiceWorker registration failed: ', err);
+                    });
+            });
+        }
+    </script>
+    
+    <!-- Google Analytics (optional) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXX-Y"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-XXXXX-Y');
+    </script>
+</body>
+</html>
