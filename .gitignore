@@ -1,0 +1,8 @@
+*.compiled
+*.build
+*.bak
+*.~*
+*.log
+/Temp/
+/Bin/
+/History/
